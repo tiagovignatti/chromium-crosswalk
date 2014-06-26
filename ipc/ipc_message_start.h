@@ -107,6 +107,7 @@ enum IPCMessageStart {
   BatteryStatusMsgStart,
   UtilityPrintingMsgStart,
   AecDumpMsgStart,
+  OzoneGpuMsgStart,
   LastIPCMsgStart  // Must come last.
 };
 
