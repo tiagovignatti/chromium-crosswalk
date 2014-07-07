@@ -16,6 +16,7 @@
 #include "ui/events/ozone/evdev/cursor_delegate_evdev.h"
 #include "ui/events/ozone/evdev/event_device_info.h"
 #include "ui/events/ozone/evdev/key_event_converter_evdev.h"
+#include "ui/events/ozone/evdev/mouse_event_converter_evdev.h"
 #include "ui/events/ozone/evdev/touch_event_converter_evdev.h"
 
 #if defined(USE_EVDEV_GESTURES)
@@ -70,6 +71,10 @@ scoped_ptr<EventConverterEvdev> CreateConverter(
   if (devinfo.HasAbsXY())
     return make_scoped_ptr<EventConverterEvdev>(
         new TouchEventConverterEvdev(fd, path, devinfo, dispatch));
+
+  if (devinfo.HasRelXY())
+    return make_scoped_ptr<EventConverterEvdev>(
+        new MouseEventConverterEvdev(fd, path, cursor, dispatch));
 
   // Everything else: use KeyEventConverterEvdev.
   return make_scoped_ptr<EventConverterEvdev>(

@@ -72,6 +72,8 @@
       'evdev/events_ozone_evdev_export.h',
       'evdev/key_event_converter_evdev.cc',
       'evdev/key_event_converter_evdev.h',
+      'evdev/mouse_event_converter_evdev.cc',
+      'evdev/mouse_event_converter_evdev.h',
       'evdev/touch_event_converter_evdev.cc',
       'evdev/touch_event_converter_evdev.h',
     ],
