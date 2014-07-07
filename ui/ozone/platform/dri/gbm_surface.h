@@ -33,6 +33,7 @@ class GbmSurface : public ScanoutSurface {
   virtual uint32_t GetHandle() const OVERRIDE;
   virtual gfx::Size Size() const OVERRIDE;
   virtual void SwapBuffers() OVERRIDE;
+  virtual uint32_t GetStride() const OVERRIDE;
 
   // Before scheduling the backbuffer to be scanned out we need to "lock" it.
   // When we lock it, GBM will give a pointer to a buffer representing the

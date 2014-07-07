@@ -110,12 +110,22 @@ void HardwareDisplayController::Disable() {
 
 bool HardwareDisplayController::SchedulePageFlip() {
   CHECK(surface_);
-  if (!is_disabled_ && !drm_->PageFlip(crtc_id_,
-                                       surface_->GetFramebufferId(),
-                                       this)) {
+  if (is_disabled_)
+    return true;
+
+  if (surface_->GetStride() != current_stride_ &&
+      !drm_->SetCrtc(crtc_id_, surface_->GetFramebufferId(),
+                     &connector_id_, &mode_)) {
+    LOG(ERROR) << "Cannot mode set: " << strerror(errno);
+    return false;
+  }
+
+  if (!drm_->PageFlip(crtc_id_, surface_->GetFramebufferId(), this)) {
     LOG(ERROR) << "Cannot page flip: " << strerror(errno);
     return false;
   }
+
+  current_stride_ = surface_->GetStride();
 
   return true;
 }

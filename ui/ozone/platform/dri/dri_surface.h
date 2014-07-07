@@ -35,6 +35,7 @@ class OZONE_EXPORT DriSurface : public ScanoutSurface {
   virtual uint32_t GetHandle() const OVERRIDE;
   virtual void SwapBuffers() OVERRIDE;
   virtual gfx::Size Size() const OVERRIDE;
+  virtual uint32_t GetStride() const OVERRIDE;
 
  private:
   DriBuffer* frontbuffer() const { return bitmaps_[front_buffer_].get(); }

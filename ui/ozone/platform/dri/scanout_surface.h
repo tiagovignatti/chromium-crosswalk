@@ -70,6 +70,9 @@ class ScanoutSurface {
 
   // Returns the surface size.
   virtual gfx::Size Size() const = 0;
+
+  // Returns the stride of the current backbuffer.
+  virtual uint32_t GetStride() const = 0;
 };
 
 class ScanoutSurfaceGenerator {

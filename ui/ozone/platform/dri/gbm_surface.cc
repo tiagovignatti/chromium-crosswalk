@@ -81,6 +81,16 @@ gfx::Size GbmSurface::Size() const {
   return size_;
 }
 
+uint32_t GbmSurface::GetStride() const {
+  if (!buffers_[front_buffer_ ^ 1])
+    return dumb_buffer_->stride();
+
+  BufferData* data = BufferData::GetData(buffers_[front_buffer_ ^ 1]);
+  CHECK(data);
+
+  return data->stride();
+}
+
 void GbmSurface::SwapBuffers() {
   // If there was a frontbuffer, is no longer active. Release it back to GBM.
   if (buffers_[front_buffer_])

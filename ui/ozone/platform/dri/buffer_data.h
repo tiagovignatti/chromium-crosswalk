@@ -32,6 +32,7 @@ class BufferData {
 
   uint32_t framebuffer() const { return framebuffer_; }
   uint32_t handle() const { return handle_; }
+  uint32_t stride() const { return stride_; }
 
  private:
   BufferData(DriWrapper* dri, gbm_bo* buffer);
@@ -40,6 +41,8 @@ class BufferData {
   DriWrapper* dri_;
 
   uint32_t handle_;
+
+  uint32_t stride_;
 
   // ID provided by the controller when the buffer is registered. This ID is
   // used when scanning out the buffer.

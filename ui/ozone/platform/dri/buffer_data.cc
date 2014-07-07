@@ -20,6 +20,7 @@ const uint8_t kPixelDepth = 32;
 BufferData::BufferData(DriWrapper* dri, gbm_bo* buffer)
     : dri_(dri),
       handle_(gbm_bo_get_handle(buffer).u32),
+      stride_(gbm_bo_get_stride(buffer)),
       framebuffer_(0) {
   // Register the buffer with the controller. This will allow us to scan out the
   // buffer once we're done drawing into it. If we can't register the buffer

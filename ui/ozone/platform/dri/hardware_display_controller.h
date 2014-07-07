@@ -174,6 +174,8 @@ class OZONE_EXPORT HardwareDisplayController
   // is set to false. Otherwise it is true.
   bool is_disabled_;
 
+  uint32_t current_stride_;
+
   DISALLOW_COPY_AND_ASSIGN(HardwareDisplayController);
 };
 
